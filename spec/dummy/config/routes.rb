@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-
-  mount Tauth::Engine => "/tauth"
+  mount TAuth::Engine => '/tauth'
 end

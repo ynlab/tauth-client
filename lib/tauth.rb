@@ -1,4 +1,4 @@
-require "tauth/engine"
+require 'tauth/engine'
 
-module Tauth
+module TAuth
 end

@@ -1,5 +1,5 @@
-module Tauth
+module TAuth
   class Engine < ::Rails::Engine
-    isolate_namespace Tauth
+    isolate_namespace TAuth
   end
 end

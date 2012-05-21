@@ -1,3 +1,3 @@
-module Tauth
-  VERSION = "0.0.1"
+module TAuth
+  VERSION = '0.0.1'
 end
