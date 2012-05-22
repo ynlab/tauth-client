@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  mount Tauth::Engine => '/tauth'
+  root :to => 'main#index'
+
+  mount Tauth::Engine => '/auth', :as => 'tauth'
 end

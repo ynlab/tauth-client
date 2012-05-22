@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 3.2.3'
   s.add_dependency 'mysql2'
+  s.add_dependency 'omniauth-openid'
 end
