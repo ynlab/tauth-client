@@ -6,6 +6,9 @@ module Tauth
     isolate_namespace Tauth
 
     config.generators do |g|
+      g.helper false
+      g.assets false
+
       g.test_framework      :rspec, :view_specs => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
