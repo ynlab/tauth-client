@@ -1,3 +1,9 @@
 %h1 Dummy
 
-= link_to 'ログイン', '/auth/provider'
+- if authenticated?
+  = current_user.display_name
+  = link_to 'ログアウト', tauth.logout_path
+- else
+  = link_to 'ログイン', '/auth/provider'
+
+= link_to 'private', :private
