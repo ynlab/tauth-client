@@ -1,4 +1,4 @@
-module TAuth
+module Tauth
   module ApplicationHelper
   end
 end

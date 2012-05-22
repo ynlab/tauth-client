@@ -6,7 +6,7 @@ require 'tauth/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'tauth-client'
-  s.version     = TAuth::VERSION
+  s.version     = Tauth::VERSION
   s.authors     = 'MicrobeDB.jp project'
   s.homepage    = 'https://auth.annotation.jp'
   s.summary     = 'TAuth Client Library'

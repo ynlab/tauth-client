@@ -1,2 +1,2 @@
-TAuth::Engine.routes.draw do
+Tauth::Engine.routes.draw do
 end
