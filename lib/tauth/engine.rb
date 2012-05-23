@@ -14,8 +14,9 @@ module Tauth
     end
 
     initializer 'tauth.add_middleware', :after => 'build_middleware_stack' do
-      OmniAuth::Strategies::OpenID::AX[:id]       = 'http://auth.annotation.jp/ax/id'
-      OmniAuth::Strategies::OpenID::AX[:group_id] = 'http://auth.annotation.jp/ax/groupId'
+      OmniAuth::Strategies::OpenID::AX[:id]                = 'http://auth.annotation.jp/ax/id'
+      OmniAuth::Strategies::OpenID::AX[:group_id]          = 'http://auth.annotation.jp/ax/groupId'
+      OmniAuth::Strategies::OpenID::AX[:openid_identifier] = 'http://auth.annotation.jp/ax/openidUrl'
 
       OmniAuth.configure do |omniauth|
         omniauth.path_prefix = ''
@@ -24,7 +25,7 @@ module Tauth
       config.middleware.use OmniAuth::Strategies::OpenID, {
         :name       => 'provider',
         :identifier => 'http://localhost:3333/server',
-        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :group_id),
+        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :group_id, :openid_identifier),
         :optional   => [],
         :store      => OpenID::Store::Filesystem.new(Rails.root.join('tmp'))
       }
