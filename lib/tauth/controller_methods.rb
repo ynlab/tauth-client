@@ -20,6 +20,10 @@ module Tauth
       if id = session[:current_user]
         @current_user ||= User.find(id)
       end
+    rescue ActiveRecord::RecordNotFound
+      logout
+
+      nil
     end
 
     def authenticated?
