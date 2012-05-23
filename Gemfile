@@ -6,6 +6,7 @@ source 'http://rubygems.org'
 gemspec
 
 # the dummy application
+gem 'mysql2'
 gem 'jquery-rails'
 gem 'haml-rails'
 

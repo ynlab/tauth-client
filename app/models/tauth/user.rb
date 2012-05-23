@@ -1,5 +1,13 @@
+require 'active_attr'
+
 module Tauth
-  class User < ActiveRecord::Base
-    attr_accessible :display_name, :email, :group_ids, :openid_identifier
+  class User
+    include ActiveAttr::Model
+
+    attribute :id,                :type => Integer
+    attribute :display_name,      :type => String
+    attribute :email,             :type => String
+    attribute :group_ids,         :type => String
+    attribute :openid_identifier, :type => String
   end
 end

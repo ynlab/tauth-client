@@ -12,6 +12,11 @@ module Tauth
   class Configuration
     include ActiveSupport::Configurable
 
+    config_accessor :store_user
     config_accessor :user_class
+  end
+
+  configure do |config|
+    config.store_user = false
   end
 end

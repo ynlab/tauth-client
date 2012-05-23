@@ -5,14 +5,22 @@ module Tauth
     def create
       ax = OpenID::AX::FetchResponse.from_success_response(auth_hash[:extra][:response])
 
-      user = Tauth.config.user_class.find_or_initialize_by_id(ax.get_single(AX[:id]))
+      id = ax.get_single(AX[:id])
 
-      user.update_attributes!(
+      attrs = {
         :display_name      => auth_hash[:info][:name],
         :email             => auth_hash[:info][:email],
         :group_ids         => ax.get(AX[:group_id]).join(','),
         :openid_identifier => ax.get_single(AX[:openid_identifier])
-      )
+      }
+
+      if Tauth.config.store_user
+        user = Tauth.config.user_class.find_or_initialize_by_id(id)
+
+        user.update_attributes!(attrs)
+      else
+        user = Tauth.config.user_class.new(attrs.merge(:id => id))
+      end
 
       login_as user
 

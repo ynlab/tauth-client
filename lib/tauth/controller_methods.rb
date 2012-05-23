@@ -7,7 +7,7 @@ module Tauth
     end
 
     def login_as(user)
-      cookies.permanent.signed[:tauth_user] = user.id
+      cookies.permanent.signed[:tauth_user] = {:value => user.attributes}
       @current_user = user
     end
 
@@ -17,8 +17,12 @@ module Tauth
     end
 
     def current_user
-      if id = cookies.signed[:tauth_user]
-        @current_user ||= Tauth.config.user_class.find(id)
+      return unless attrs = cookies.signed[:tauth_user]
+
+      if Tauth.config.store_user
+        @current_user ||= Tauth.config.user_class.find(attrs[:id])
+      else
+        @current_user ||= Tauth.config.user_class.new(attrs)
       end
     rescue ActiveRecord::RecordNotFound
       logout
