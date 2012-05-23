@@ -32,6 +32,10 @@ module Tauth
     end
 
     initializer 'tauth' do
+      Tauth.configure do |config|
+        config.user_class = Tauth::User
+      end
+
       ActiveSupport.on_load :action_controller do
         require 'tauth/controller_methods'
         ::ActionController::Base.send :include, ControllerMethods

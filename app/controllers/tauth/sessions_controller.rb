@@ -5,7 +5,7 @@ module Tauth
     def create
       ax = OpenID::AX::FetchResponse.from_success_response(auth_hash[:extra][:response])
 
-      user = Tauth::User.find_or_initialize_by_id(ax.get_single(AX[:id]))
+      user = Tauth.config.user_class.find_or_initialize_by_id(ax.get_single(AX[:id]))
 
       user.update_attributes!(
         :display_name      => auth_hash[:info][:name],

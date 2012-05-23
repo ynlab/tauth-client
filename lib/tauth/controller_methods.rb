@@ -18,7 +18,7 @@ module Tauth
 
     def current_user
       if id = session[:current_user]
-        @current_user ||= User.find(id)
+        @current_user ||= Tauth.config.user_class.find(id)
       end
     rescue ActiveRecord::RecordNotFound
       logout
