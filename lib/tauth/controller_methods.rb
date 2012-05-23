@@ -20,7 +20,7 @@ module Tauth
       return unless attrs = cookies.signed[:tauth_user]
 
       if Tauth.config.store_user
-        @current_user ||= Tauth.config.user_class.find(attrs[:id])
+        @current_user ||= Tauth.config.user_class.find(attrs['id'])
       else
         @current_user ||= Tauth.config.user_class.new(attrs)
       end
