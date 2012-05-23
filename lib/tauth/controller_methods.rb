@@ -7,23 +7,21 @@ module Tauth
     end
 
     def login_as(user)
-      session[:current_user] = user.id
+      cookies.permanent.signed[:tauth_user] = user.id
       @current_user = user
     end
 
     def logout
+      cookies.delete(:tauth_user)
       @current_user = nil
-      reset_session
     end
 
     def current_user
-      if id = session[:current_user]
+      if id = cookies.signed[:tauth_user]
         @current_user ||= Tauth.config.user_class.find(id)
       end
     rescue ActiveRecord::RecordNotFound
       logout
-
-      nil
     end
 
     def authenticated?
