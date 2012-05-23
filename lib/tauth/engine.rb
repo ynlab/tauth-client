@@ -33,7 +33,7 @@ module Tauth
     initializer 'tauth' do
       ActiveSupport.on_load :action_controller do
         require 'tauth/controller_methods'
-        ::ApplicationController.send :include, ControllerMethods
+        ::ActionController::Base.send :include, ControllerMethods
       end
     end
   end
