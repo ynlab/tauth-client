@@ -11,5 +11,5 @@ module Tauth
         Group.new(:id => id, :name => name)
       }
     end
-  end
+  end if defined?(ActiveRecord)
 end
