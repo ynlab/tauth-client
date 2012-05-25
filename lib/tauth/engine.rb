@@ -25,8 +25,8 @@ module Tauth
 
       config.middleware.use OmniAuth::Strategies::OpenID, {
         :name       => 'provider',
-        :identifier => 'http://localhost:3333/server',
-        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :group_id, :openid_identifier),
+        :identifier => Tauth.config.discovery_url,
+        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :openid_identifier, :group_id, :group_name),
         :optional   => [],
         :store      => OpenID::Store::Filesystem.new(Rails.root.join('tmp'))
       }
