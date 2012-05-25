@@ -9,6 +9,7 @@ module Tauth
     attribute :email,             :type => String
     attribute :openid_identifier, :type => String
     attribute :groups_data,       :type => Object
+    attribute :admin,             :type => Boolean
 
     def groups
       Array.wrap(groups_data).map {|id, name|

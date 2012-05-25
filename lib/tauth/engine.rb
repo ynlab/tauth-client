@@ -18,6 +18,7 @@ module Tauth
       OmniAuth::Strategies::OpenID::AX[:openid_identifier] = 'http://auth.annotation.jp/ax/openidUrl'
       OmniAuth::Strategies::OpenID::AX[:group_id]          = 'http://auth.annotation.jp/ax/groupId'
       OmniAuth::Strategies::OpenID::AX[:group_name]        = 'http://auth.annotation.jp/ax/groupName'
+      OmniAuth::Strategies::OpenID::AX[:admin]             = 'http://auth.annotation.jp/ax/admin'
 
       OmniAuth.configure do |omniauth|
         omniauth.path_prefix = ''
@@ -26,7 +27,7 @@ module Tauth
       config.middleware.use OmniAuth::Strategies::OpenID, {
         :name       => 'provider',
         :identifier => Tauth.config.discovery_url,
-        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :openid_identifier, :group_id, :group_name),
+        :required   => OmniAuth::Strategies::OpenID::AX.values_at(:id, :email, :name, :openid_identifier, :group_id, :group_name, :admin),
         :optional   => [],
         :store      => OpenID::Store::Filesystem.new(Rails.root.join('tmp'))
       }

@@ -2,7 +2,7 @@ module Tauth
   class StoredUser < ActiveRecord::Base
     self.table_name = 'tauth_users'
 
-    attr_accessible :display_name, :email, :openid_identifier, :groups_data
+    attr_accessible :display_name, :email, :openid_identifier, :groups_data, :admin
 
     serialize :groups_data
 

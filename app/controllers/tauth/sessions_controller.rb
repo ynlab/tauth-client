@@ -21,7 +21,8 @@ module Tauth
         :display_name      => auth_hash[:info][:name],
         :email             => auth_hash[:info][:email],
         :openid_identifier => ax.get_single(AX[:openid_identifier]),
-        :groups_data       => groups_data
+        :groups_data       => groups_data,
+        :admin             => ax.get_single(AX[:admin])
       }
 
       if Tauth.config.store_user
