@@ -44,6 +44,7 @@ module Tauth
     end
 
     def failure
+      redirect_to main_app.root_path, :flash => {:error => params[:message]}
     end
 
     private
