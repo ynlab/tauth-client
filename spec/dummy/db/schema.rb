@@ -10,15 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523070809) do
+ActiveRecord::Schema.define(:version => 20120525095550) do
 
   create_table "tauth_users", :force => true do |t|
     t.string   "email"
     t.string   "display_name"
-    t.string   "group_ids"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "openid_identifier"
+    t.text     "groups_data"
   end
 
 end

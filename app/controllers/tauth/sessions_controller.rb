@@ -5,13 +5,14 @@ module Tauth
     def create
       ax = OpenID::AX::FetchResponse.from_success_response(auth_hash[:extra][:response])
 
-      id = ax.get_single(AX[:id])
+      id          = ax.get_single(AX[:id])
+      groups_data = ax.get(AX[:group_id]).map(&:to_i).zip(ax.get(AX[:group_name]))
 
       attrs = {
         :display_name      => auth_hash[:info][:name],
         :email             => auth_hash[:info][:email],
-        :group_ids         => ax.get(AX[:group_id]).join(','),
-        :openid_identifier => ax.get_single(AX[:openid_identifier])
+        :openid_identifier => ax.get_single(AX[:openid_identifier]),
+        :groups_data       => groups_data
       }
 
       if Tauth.config.store_user

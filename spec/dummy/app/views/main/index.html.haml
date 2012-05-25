@@ -1,9 +1,17 @@
 %h1 Dummy
 
 - if authenticated?
-  = current_user.display_name
-  = link_to 'ログアウト', tauth.logout_path
-- else
-  = link_to 'ログイン', '/auth/provider'
+  %p Hi, <b>#{current_user.display_name}</b>.
 
-= link_to 'private', :private
+  %h2 Your groups
+
+  %dl
+    - current_user.groups.each do |group|
+      %dt= group.id
+      %dd= group.name
+
+  %div= link_to 'ログアウト', tauth.logout_path
+- else
+  %div= link_to 'ログイン', '/auth/provider'
+
+%div= link_to 'private', :private

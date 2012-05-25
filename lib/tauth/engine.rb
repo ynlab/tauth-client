@@ -15,8 +15,9 @@ module Tauth
 
     initializer 'tauth.add_middleware', :after => 'build_middleware_stack' do
       OmniAuth::Strategies::OpenID::AX[:id]                = 'http://auth.annotation.jp/ax/id'
-      OmniAuth::Strategies::OpenID::AX[:group_id]          = 'http://auth.annotation.jp/ax/groupId'
       OmniAuth::Strategies::OpenID::AX[:openid_identifier] = 'http://auth.annotation.jp/ax/openidUrl'
+      OmniAuth::Strategies::OpenID::AX[:group_id]          = 'http://auth.annotation.jp/ax/groupId'
+      OmniAuth::Strategies::OpenID::AX[:group_name]        = 'http://auth.annotation.jp/ax/groupName'
 
       OmniAuth.configure do |omniauth|
         omniauth.path_prefix = ''
