@@ -8,7 +8,7 @@ module Tauth
     attribute :display_name,      :type => String
     attribute :email,             :type => String
     attribute :openid_identifier, :type => String
-    attribute :groups_data,       :type => Array
+    attribute :groups_data,       :type => Object
 
     def groups
       Array.wrap(groups_data).map {|id, name|
