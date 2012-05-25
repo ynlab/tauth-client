@@ -16,7 +16,9 @@ module Tauth
     end
 
     def logout
-      cookies.delete(:tauth_user)
+      cookies.delete :tauth_user
+      cookies.delete :tauth_last_fetch
+
       @current_user = nil
     end
 
