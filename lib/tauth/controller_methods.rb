@@ -4,10 +4,14 @@ module Tauth
 
     included do
       helper_method :current_user, :authenticated?
+
+      before_filter :refresh_current_user, :if => :authenticated?
     end
 
     def login_as(user)
-      cookies.permanent.signed[:tauth_user] = {:value => user.attributes}
+      cookies.permanent.signed[:tauth_user]       = {:value => user.attributes}
+      cookies.permanent.signed[:tauth_last_fetch] = Time.zone.now
+
       @current_user = user
     end
 
@@ -33,7 +37,13 @@ module Tauth
     end
 
     def authenticate!
-      redirect_to tauth.login_path(:return_to => request.path) unless authenticated?
+      redirect_to tauth.login_path(:return_to => request.fullpath) unless authenticated?
+    end
+
+    def refresh_current_user
+      return if last_fetch = cookies.signed[:tauth_last_fetch] and last_fetch > Tauth.config.expires_in.ago
+
+      redirect_to tauth.login_path(:return_to => request.fullpath)
     end
   end
 end

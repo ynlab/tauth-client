@@ -2,6 +2,8 @@ module Tauth
   class SessionsController < ApplicationController
     AX = OmniAuth::Strategies::OpenID::AX
 
+    skip_before_filter :refresh_current_user
+
     def new
       redirect_to URI::Generic.build(
         :path  => root_path + 'provider',

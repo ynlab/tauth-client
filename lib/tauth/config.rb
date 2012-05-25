@@ -1,4 +1,5 @@
 require 'active_support/configurable'
+require 'active_support/core_ext/numeric/time'
 
 module Tauth
   class << self
@@ -14,9 +15,11 @@ module Tauth
 
     config_accessor :store_user
     config_accessor :user_class
+    config_accessor :expires_in
   end
 
   configure do |config|
     config.store_user = false
+    config.expires_in = 5.minutes
   end
 end
