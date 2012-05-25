@@ -12,6 +12,6 @@
 
   %div= link_to 'ログアウト', tauth.logout_path
 - else
-  %div= link_to 'ログイン', '/auth/provider'
+  %div= link_to 'ログイン', tauth.login_path
 
 %div= link_to 'private', :private

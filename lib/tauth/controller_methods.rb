@@ -33,7 +33,7 @@ module Tauth
     end
 
     def authenticate!
-      redirect_to '/auth/provider' unless authenticated?
+      redirect_to tauth.login_path(:return_to => request.path) unless authenticated?
     end
   end
 end

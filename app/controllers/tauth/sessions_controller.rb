@@ -2,6 +2,13 @@ module Tauth
   class SessionsController < ApplicationController
     AX = OmniAuth::Strategies::OpenID::AX
 
+    def new
+      redirect_to URI::Generic.build(
+        :path  => root_path + 'provider',
+        :query => Rack::Utils.build_query(:return_to => params[:return_to] || request.referer)
+      ).to_s
+    end
+
     def create
       ax = OpenID::AX::FetchResponse.from_success_response(auth_hash[:extra][:response])
 
@@ -25,7 +32,7 @@ module Tauth
 
       login_as user
 
-      redirect_to main_app.root_path
+      redirect_to params[:return_to] || main_app.root_path
     end
 
     def destroy

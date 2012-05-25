@@ -1,6 +1,8 @@
 Tauth::Engine.routes.draw do
-  match '/provider/callback' => 'sessions#create'
-  match '/provider/failure'  => 'sessions#failure'
+  root :to => 'sessions#new'
 
-  match '/logout' => 'sessions#destroy'
+  match '/login'             => 'sessions#new'
+  match '/logout'            => 'sessions#destroy'
+  match '/provider/callback' => 'sessions#create'
+  match '/failure'           => 'sessions#failure'
 end
