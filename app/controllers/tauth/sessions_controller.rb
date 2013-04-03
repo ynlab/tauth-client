@@ -15,7 +15,8 @@ module Tauth
       ax = OpenID::AX::FetchResponse.from_success_response(auth_hash[:extra][:response])
 
       id          = ax.get_single(AX[:id])
-      groups_data = ax.get(AX[:group_id]).map(&:to_i).zip(ax.get(AX[:group_name]))
+
+      groups_data = ax.get(AX[:group_id]).map(&:to_i).zip(ax.get(AX[:group_name]), ax.get(AX[:group_admin]))
 
       attrs = {
         :display_name      => auth_hash[:info][:name],
