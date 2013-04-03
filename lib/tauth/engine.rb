@@ -18,6 +18,7 @@ module Tauth
       OmniAuth::Strategies::OpenID::AX[:openid_identifier] = 'http://auth.annotation.jp/ax/openidUrl'
       OmniAuth::Strategies::OpenID::AX[:group_id]          = 'http://auth.annotation.jp/ax/groupId'
       OmniAuth::Strategies::OpenID::AX[:group_name]        = 'http://auth.annotation.jp/ax/groupName'
+      OmniAuth::Strategies::OpenID::AX[:group_admin]        = 'http://auth.annotation.jp/ax/groupAdmin'
       OmniAuth::Strategies::OpenID::AX[:admin]             = 'http://auth.annotation.jp/ax/admin'
 
       OmniAuth.configure do |omniauth|

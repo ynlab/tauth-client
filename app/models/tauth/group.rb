@@ -6,5 +6,6 @@ module Tauth
 
     attribute :id
     attribute :name
+    attribute :admin
   end
 end
