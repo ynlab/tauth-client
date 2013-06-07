@@ -3,7 +3,7 @@ module Tauth
     extend ActiveSupport::Concern
 
     included do
-      helper_method :current_user, :authenticated?
+      helper_method :current_user, :authenticated?, :refresh_current_user!
 
       before_filter :refresh_current_user, :if => :authenticated?
     end
@@ -43,8 +43,12 @@ module Tauth
     end
 
     def refresh_current_user
-      return if last_fetch = cookies.signed[:tauth_last_fetch] and last_fetch > Tauth.config.expires_in.ago
+      return if last_fetch = cookies.signed[:tauth_last_fetch] and last_fetch > Tauth.config.expires_in.ago and request.method != 'GET'
 
+      refresh_current_user!
+    end
+
+    def refresh_current_user!
       redirect_to tauth.login_path(:return_to => request.fullpath)
     end
   end
