@@ -43,7 +43,7 @@ module Tauth
     end
 
     def refresh_current_user
-      return if last_fetch = cookies.signed[:tauth_last_fetch] and last_fetch > Tauth.config.expires_in.ago and request.method != 'GET'
+      return if (last_fetch = cookies.signed[:tauth_last_fetch] and last_fetch > Tauth.config.expires_in.ago) or request.method != 'GET'
 
       refresh_current_user!
     end
