@@ -6,7 +6,7 @@ module Tauth
 
     def new
       redirect_to URI::Generic.build(
-        :path  => main_app.root_path + 'provider',
+        :path  => root_path + 'provider',
         :query => Rack::Utils.build_query(:return_to => params[:return_to] || request.referer)
       ).to_s
     end
