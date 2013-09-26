@@ -44,7 +44,7 @@ module Tauth
     def destroy
       logout
 
-      redirect_to main_app.root_path
+      redirect_to params[:return_to] || main_app.root_path
     end
 
     def failure
