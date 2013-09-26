@@ -43,8 +43,9 @@ module Tauth
 
     def destroy
       logout
+      return_to = Settings.uris.values.include?(params[:return_to]) ? params[:return_to] : main_app.root_path
 
-      redirect_to params[:return_to] || main_app.root_path
+      redirect_to return_to
     end
 
     def failure
