@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  before_filter :authenticate!, :only => 'private'
+  before_action :authenticate!, :only => 'private'
 
   def index
   end
