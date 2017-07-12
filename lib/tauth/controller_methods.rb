@@ -5,7 +5,7 @@ module Tauth
     included do
       helper_method :current_user, :authenticated?, :refresh_current_user!
 
-      before_filter :refresh_current_user, :if => :authenticated?
+      before_action :refresh_current_user, :if => :authenticated?
     end
 
     def login_as(user)
