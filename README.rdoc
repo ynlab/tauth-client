@@ -1,3 +1,8 @@
 = TAuth Client
 
 This project rocks and uses MIT-LICENSE.
+
+== Rails3系からtauth-clientを利用したい場合
+
+rails3ブランチ( https://github.com/ynlab/tauth-client/tree/rails3 )を使用してください。
+
